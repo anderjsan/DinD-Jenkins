@@ -4,18 +4,23 @@ import json
 class FileManager():
     def __init__(self, project):
         self.project = project
-        self.path = f".version/.{project}"
-        self.log_path = f".version/log/.{project}_log"
-        
+        self.project_dir = f".version/{project}"
+        self.version_path = os.path.join(self.project_dir, ".version")
+        self.log_path = os.path.join(self.project_dir, ".version_log")
+        self._create_directories()
+    
+    def _create_directories(self):
+        os.makedirs(self.project_dir, exist_ok=True)
+    
     def read_last_version(self, project):
         try:
-            with open(f".version/.{project}", "r") as f:
+            with open(self.version_path, "r") as f:
                 if not f.read():
                     return "0.0.0"
                 f.seek(0)
                 return f.readline().strip()
         except FileNotFoundError:
-            with open(f".version/.{project}", "w") as f:
+            with open(self.version_path, "w") as f:
                 f.write("0.0.0")
             return "0.0.0"
         except Exception as e:
@@ -23,7 +28,7 @@ class FileManager():
         
     def write_new_version(self, new_version):
         try:
-            with open(self.path, "w") as f:
+            with open(self.version_path, "w") as f:
                 f.write(new_version)
             self.version = new_version
         except Exception as e:
