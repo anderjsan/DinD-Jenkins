@@ -54,3 +54,4 @@ class FileManager():
                 json.dump(logs, json_file, indent=4)
         except Exception as e:
             print(f"Error in write_commit_logs: {e}")
+            print
