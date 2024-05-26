@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     return 'Hello World!'
 
-@app.route('/<string:project>/tag', methods=['GET'])
+@app.route('/<string:project>/tag', methods=['POST'])
 def new_version(project):
     updater = CommitUpdater(project)
     return jsonify(updater.new_version())
