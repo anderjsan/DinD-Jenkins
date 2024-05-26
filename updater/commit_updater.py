@@ -1,6 +1,7 @@
 from .git_utils import GitUtils
 from .version_manager import VersionManager
 from .file_manager import FileManager
+import datetime
 
 class CommitUpdater():
     def __init__(self, project):
@@ -42,7 +43,8 @@ class CommitUpdater():
         if self._version_manager.keyword == "[FIX]":
             commit_log = {
             "tag": new_version,
-            "git_message": self._commit_message
+            "git_message": self._commit_message,
+            "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
             for commit in reversed(commit_logs):
                 if commit["tag"].split(".")[:2] == new_version.split(".")[:2]:
@@ -52,6 +54,7 @@ class CommitUpdater():
             commit_log = {
                     "tag": new_version,
                     "git_message": self._commit_message,
+                    "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     "fixes": []
                 }
             commit_logs.append(commit_log)
