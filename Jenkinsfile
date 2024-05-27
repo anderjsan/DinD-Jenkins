@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     echo 'Executing Custom Commands'
-                    sh './version_tag.sh'
+                    sh '/var/jenkins_home/version_tag.sh'
                 }
             }
         }
