@@ -55,6 +55,7 @@ pipeline {
                     def tag = sh(script: 'cat /var/jenkins_home/.version/$JOB_NAME/.version', returnStdout: true).trim()
                     withEnv(["PROJECT=$JOB_NAME", "TAG=$tag"]) {
                         echo "Project: ${env.PROJECT}; Version: ${env.TAG}"
+                    }
                 }
             }
         }
