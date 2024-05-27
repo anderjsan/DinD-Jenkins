@@ -50,8 +50,10 @@ pipeline {
             steps {
                 script {
                     echo 'Executing New Version Tag Commands'
-                    sh './version_tag.sh'
-                    sh 'pwd'
+                    sh 'export PROJECT=$JOB_NAME'
+                    sh 'curl -X POST http://version-control:4005/$PROJECT/tag'
+                    sh 'export TAG=$(cat /var/jenkins_home/.version/$PROJECT/.version)'
+                    sh 'echo "Project: $PROJECT; Version: $TAG"'
                 }
             }
         }
