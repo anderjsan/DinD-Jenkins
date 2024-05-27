@@ -49,8 +49,8 @@ pipeline {
         stage('Execute New Version Tag') {
             steps {
                 script {
-                    echo 'Executing Custom Commands'
-                    //sh './var/jenkins_home/version_tag.sh'
+                    echo 'Executing New Version Tag Commands'
+                    sh './version_tag.sh'
                     sh 'pwd'
                 }
             }
