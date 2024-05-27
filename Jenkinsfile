@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     echo 'docker-compose down'
-                    //sh 'docker-compose down'
+                    sh 'docker-compose down'
                 }
                 script {
                     sleep 10 // Espera um tempo para os contêineres serem Parados completamente
@@ -78,7 +78,7 @@ pipeline {
             steps {
                 script {
                     echo 'docker-compose build'
-                    //sh 'docker-compose build'
+                    sh 'docker-compose build'
                 }
                 script {
                     sleep 10 // Espera um tempo para os contêineres serem iniciados completamente
@@ -90,7 +90,7 @@ pipeline {
             steps {
                 script {
                     echo 'docker-compose up -d'
-                    //sh 'docker-compose up -d'
+                    sh 'docker-compose up -d'
                 }
                 script {
                     sleep 10 // Espera um tempo para os contêineres serem iniciados completamente
