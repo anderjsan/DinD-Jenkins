@@ -51,9 +51,9 @@ pipeline {
                 script {
                     echo 'Executing New Version Tag Commands'
                     sh 'export PROJECT=$JOB_NAME'
-                    sh 'curl -X POST http://version-control:4005/$PROJECT/tag'
-                    sh 'export TAG=$(cat /var/jenkins_home/.version/$PROJECT/.version)'
-                    sh 'echo "Project: $PROJECT; Version: $TAG"'
+                    sh 'curl -X POST http://version-control:4005/$JOB_NAME/tag'
+                    sh 'export TAG=$(cat /var/jenkins_home/.version/$JOB_NAME/.version)'
+                    sh 'echo "Project: $JOB_NAME; Version: $TAG"'
                 }
             }
         }
