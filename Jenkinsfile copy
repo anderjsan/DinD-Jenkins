@@ -46,18 +46,11 @@ pipeline {
                 }
             }
         }
-        stage('Execute New Version Tag') {
-            steps {
-                script {
-                    echo 'Executing Custom Commands'
-                    sh './version_tag.sh'
-                }
-            }
-        }
+        
         stage('Stop Current Containers'){
             steps {
                 script {
-                    //sh 'docker-compose down'
+                    sh 'docker-compose down'
                 }
                 script {
                     sleep 10 // Espera um tempo para os contêineres serem Parados completamente
@@ -71,7 +64,7 @@ pipeline {
         stage('Build Docker Compose') {
             steps {
                 script {
-                    //sh 'docker-compose build'
+                    sh 'docker-compose build'
                 }
                 script {
                     sleep 10 // Espera um tempo para os contêineres serem iniciados completamente
@@ -82,7 +75,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 script {
-                    //sh 'docker-compose up -d'
+                    sh 'docker-compose up -d'
                 }
                 script {
                     sleep 10 // Espera um tempo para os contêineres serem iniciados completamente
