@@ -57,6 +57,7 @@ pipeline {
         stage('Stop Current Containers'){
             steps {
                 script {
+                    echo 'docker-compose down'
                     //sh 'docker-compose down'
                 }
                 script {
@@ -71,6 +72,7 @@ pipeline {
         stage('Build Docker Compose') {
             steps {
                 script {
+                    echo 'docker-compose build'
                     //sh 'docker-compose build'
                 }
                 script {
@@ -82,6 +84,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 script {
+                    echo 'docker-compose up -d'
                     //sh 'docker-compose up -d'
                 }
                 script {
