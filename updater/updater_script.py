@@ -1,10 +1,7 @@
 from flask import Flask, jsonify
-from updater.commit_updater import CommitUpdater
-from updater.app_swagger import appSwagger
+from commit_updater.commit_updater import CommitUpdater
 
 app = Flask(__name__)
-
-swagger = appSwagger()
 
 @app.route('/')
 def index():
@@ -36,5 +33,4 @@ def get_last_log(project):
     return jsonify(updater.get_last_log())
 
 if __name__ == '__main__':
-    swagger.generate_swagger_json(app)
     app.run(host='0.0.0.0', port=4005, debug=True)
