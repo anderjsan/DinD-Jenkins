@@ -41,9 +41,6 @@ pipeline {
                         error 'No Docker Containers found. Please check DinD'
                     }
                 }
-                script {
-                    sleep 3
-                }
             }
         }
         stage('Execute New Version Tag') {
@@ -51,7 +48,7 @@ pipeline {
                 script {
                     echo 'Executing New Version Tag Commands'
                     sh 'export PROJECT=$JOB_NAME'
-                    sh 'curl -X POST http://version-control:4005/$JOB_NAME/tag'
+                    sh 'curl -X POST http://jenkins-version:4005/$JOB_NAME/tag'
                     def tag = sh(script: 'cat /var/jenkins_home/.version/$JOB_NAME/.version', returnStdout: true).trim()
                     env.TAG = tag // Defina o valor da variável TAG globalmente
                     env.PROJECT = env.JOB_NAME
@@ -69,9 +66,6 @@ pipeline {
                     }
                 }
                 script {
-                    sleep 3
-                }
-                script {
                     echo 'Stopping Current Containers'
                 }
             }
@@ -85,9 +79,6 @@ pipeline {
                         sh 'docker-compose build'
                     }
                 }
-                script {
-                    sleep 3
-                }
             }
         }
 
@@ -99,9 +90,6 @@ pipeline {
                         sh 'echo TAG: ${TAG}' // Use echo para imprimir a variável TAG
                         sh 'docker-compose up -d'
                     }
-                }
-                script {
-                    sleep 3
                 }
             }
         }

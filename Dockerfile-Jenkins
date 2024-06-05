@@ -12,9 +12,12 @@ RUN add-apt-repository \
    stable"
 RUN apt-get update  -qq \
  && apt-get -y install docker-ce
+RUN apt-get update  -qq \
+ && apt-get -y install telnet
 RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
 RUN usermod -aG docker jenkins
 RUN jenkins-plugin-cli --plugins "blueocean:1.27.12"
-RUN jenkins-plugin-cli --plugins "docker-plugin:1.6.1"
+RUN jenkins-plugin-cli --plugins "docker-plugin:1.6.2"
 RUN jenkins-plugin-cli --plugins "docker-workflow:580.vc0c340686b_54"
+RUN jenkins-plugin-cli --plugins "sonar:2.17.2"
