@@ -16,6 +16,15 @@ services:
     restart: always
     networks: 
       - net
+  # jenkins-socat:
+  #   container_name: jenkins-socat
+  #   image: alpine/socat
+  #   command: "tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock"
+  #   networks: 
+  #     - net
+  #   restart: always
+  #   ports:
+  #     - "127.0.0.1:2375:2375"
   version-control:
     build:
       context: .
@@ -43,7 +52,7 @@ services:
     networks:
       - net
   sonarqube-main:
-    image: sonarqube
+    image: sonarqube:community
     container_name: sonarqube-svr
     ports:
       - "9000:9000"

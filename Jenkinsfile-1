@@ -1,0 +1,41 @@
+pipeline {
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  environment {
+    SONAR_SCANNER_HOME = tool 'SonarScanner' // Verifique se 'SonarScanner' é o nome configurado na instalação de ferramentas globais
+    VENV = 'venv' // Nome do ambiente virtual Python
+  }
+  stages {
+    stage('Setup') {
+      steps {
+        sh 'python3 -m venv $VENV'
+        sh './$VENV/bin/pip install -r requirements.txt'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh './$VENV/bin/python -m unittest discover'
+      }
+    }
+    stage('Scan') {
+      steps {
+        withSonarQubeEnv('sq1') {
+          sh """
+            ${env.SONAR_SCANNER_HOME}/bin/sonar-scanner \
+              -Dsonar.projectKey=my_project_key \
+              -Dsonar.sources=. \
+              -Dsonar.host.url=http://your-sonarqube-server \
+              -Dsonar.login=your-sonarqube-token
+          """
+        }
+      }
+    }
+  }
+  post {
+    always {
+      sh 'deactivate' // Desativa o ambiente virtual após a conclusão
+    }
+  }
+}
