@@ -14,7 +14,7 @@ class appSwagger:
             config= {
                 'app_name': "API TAG Controller",
                 'description': 'API that generates new TAG For Docker Version. Works along with Jenkins.',
-                'version': '3.7.0',
+                'version': '4.0.1',
                 'Terms of Service': 'Not Applicable',
                 'contact':{
                     'name': 'Anderson Santos',
