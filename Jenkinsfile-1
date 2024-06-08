@@ -49,7 +49,9 @@ pipeline {
   post {
     always {
       // Desativação do ambiente virtual Python
-      sh 'deactivate' // Corrigido para evitar erro
+      script {
+        sh "source $VENV/bin/activate && deactivate"
+      }
     }
   }
 }
