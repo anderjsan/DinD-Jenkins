@@ -51,7 +51,8 @@ pipeline {
       // Desativação do ambiente virtual Python
       script {
         //sh "source $VENV/bin/activate && deactivate"
-        sh "$VENV/bin/activate && deactivate"
+        //sh "$VENV/bin/activate && deactivate"
+        sh 'deactivate'
       }
     }
   }
