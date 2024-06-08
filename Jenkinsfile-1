@@ -5,34 +5,24 @@ pipeline {
   }
   environment {
     SONAR_SCANNER_HOME = tool 'SonarScanner' // Verifique se 'SonarScanner' é o nome configurado na instalação de ferramentas globais
-    VENV = 'venv' // Nome do ambiente virtual Python
   }
   stages {
     stage('Setup') {
       steps {
-        script {
-          // Criação do ambiente virtual Python
-          sh 'python3 -m venv $VENV' 
-          if (fileExists("$VENV/bin/activate")) {
-            echo "Ambiente virtual criado com sucesso."
-          } else {
-            error "Falha ao criar o ambiente virtual."
-          }
-          // Instalação das dependências do projeto
-          sh './$VENV/bin/pip install -r requirements.txt' 
-        }
+        // Instalação das dependências do projeto
+        sh 'pip install -r requirements.txt' 
       }
     }
     stage('Test') {
       steps {
         // Execução dos testes unitários
-        sh './$VENV/bin/python -m unittest discover'
+        sh 'python -m unittest discover'
       }
     }
     stage('Scan') {
       steps {
+        // Execução da análise estática com SonarQube
         script {
-          // Execução da análise estática com SonarQube
           withSonarQubeEnv('sq1') {
             sh """
               ${env.SONAR_SCANNER_HOME}/bin/sonar-scanner \
@@ -48,11 +38,14 @@ pipeline {
   }
   post {
     always {
-      // Desativação do ambiente virtual Python
+      // Verifica se o ambiente virtual Python está ativado antes de tentar desativá-lo
       script {
-        //sh "source $VENV/bin/activate && deactivate"
-        //sh "$VENV/bin/activate && deactivate"
-        sh 'deactivate'
+        def result = sh(returnStatus: true, script: 'python -c "import sys; print(sys.prefix)"')
+        if (result == 0) {
+          sh 'deactivate'
+        } else {
+          echo 'Ambiente virtual Python não está ativado. Não é necessário desativar.'
+        }
       }
     }
   }
