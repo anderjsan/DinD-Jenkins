@@ -24,10 +24,10 @@ pipeline {
         withSonarQubeEnv('sq1') {
           sh """
             ${env.SONAR_SCANNER_HOME}/bin/sonar-scanner \
-              -Dsonar.projectKey=my_project_key \
+              -Dsonar.projectKey=DinD-Jenkins \
               -Dsonar.sources=. \
-              -Dsonar.host.url=http://your-sonarqube-server \
-              -Dsonar.login=your-sonarqube-token
+              -Dsonar.host.url=http://sonarqube-svr:9000 \
+              -Dsonar.token=sqp_b7075335c074d7a96e360dadbe032e9c2986114a
           """
         }
       }
