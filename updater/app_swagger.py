@@ -7,6 +7,8 @@ class App_swagger:
         self.app = app
         self.SWAGGER_URL = '/swagger'
         self.API_URL = '/static/swagger.json'  # Updated path
+        self.SWGR_STATIC = 'static'
+        self.SWGR_JSON = 'swagger.json'
         self.bp = get_swaggerui_blueprint(
             self.SWAGGER_URL,
             self.API_URL,
