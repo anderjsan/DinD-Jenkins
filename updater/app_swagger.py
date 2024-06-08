@@ -1,7 +1,7 @@
 import os
 from flask import json
 from flask_swagger_ui import get_swaggerui_blueprint
- 
+
 class AppSwagger:
     def __init__(self, app):
         self.app = app
