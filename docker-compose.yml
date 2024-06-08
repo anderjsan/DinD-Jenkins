@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-Jenkins
-    image: DinD/jenkins-local:4.0.1
+    image: DinD/jenkins-local:5.0.0
     ports:
       - "8080:8080"
     volumes:
@@ -29,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-version-controller  # Certifique-se de que o Dockerfile está no diretório correto
-    image: DinD/version-control:4.0.1
+    image: DinD/version-control:5.0.0
     ports:
       - "4004:4005"
     volumes:
