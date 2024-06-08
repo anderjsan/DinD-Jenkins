@@ -15,7 +15,7 @@ class AppSwagger:
             config={
                 'app_name': "API TAG Controller",
                 'description':'AJS Consulting',
-                'version':'0.4.0',
+                'version':'5.0.0',
                 'termsOfServiceUrl':'Not Applicable',
                 'contact':{
                     'name':'Anderson',
