@@ -29,5 +29,5 @@ class App_swagger:
         self.app.config['SWAGGER_JSON'] = self.API_URL
 
     def get_swagger_json(self):
-        with open(os.path.join(os.path.dirname(__file__), 'static', 'swagger.json')) as f:
+        with open(os.path.join(os.path.dirname(__file__), self.SWGR_STATIC, self.SWGR_JSON)) as f:
             return json.load(f)
