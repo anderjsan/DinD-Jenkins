@@ -6,8 +6,8 @@ class appSwagger:
     def __init__(self):
         self.SWAGGER_URL = '/swagger'
         self.API_URL = '/static/swagger.json'
-        self.SEAGGER_STATIC = 'static'
-        self.SWAGGER_JSON = 'swagger.json'
+        self.SWGR_STATIC = 'static'
+        self.SWGR_JSON = 'swagger.json'
         self.swagger_bp = get_swaggerui_blueprint(
             self.SWAGGER_URL,
             self.API_URL,
@@ -29,7 +29,7 @@ class appSwagger:
         with app.app_context():
             swag = app.swagger.to_dict()
             script_dir = os.path.dirname(os.path.realpath(__file__))
-            swagger_file_path = os.path.join(script_dir, self.SEAGGER_STATIC, self.SWAGGER_JSON)
+            swagger_file_path = os.path.join(script_dir, self.SWGR_STATIC, self.SWGR_JSON)
             with open(swagger_file_path, 'w') as file:
                 json.dump(swag, file, indent=2)
 
