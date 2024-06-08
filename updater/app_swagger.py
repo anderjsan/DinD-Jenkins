@@ -2,7 +2,7 @@ import os
 from flask import json
 from flask_swagger_ui import get_swaggerui_blueprint
 
-class App_swagger:
+class AppSwagger:
     def __init__(self, app):
         self.app = app
         self.SWAGGER_URL = '/swagger'
