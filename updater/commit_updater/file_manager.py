@@ -61,9 +61,5 @@ class FileManager():
         except Exception as e:
             print(f"Error in write_commit_logs: {e}")
             print()
-
             with open(self.log_path, "w") as json_file:
                 json.dump(sorted_logs, json_file, indent=4)
-        except Exception as e:
-            print(f"Error in write_commit_logs: {e}")
-            print
