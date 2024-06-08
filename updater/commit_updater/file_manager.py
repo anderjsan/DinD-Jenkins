@@ -12,7 +12,7 @@ class FileManager():
     def _create_directories(self):
         os.makedirs(self.project_dir, exist_ok=True)
     
-    def read_last_version(self, project):
+    def read_last_version(self):
         try:
             with open(self.version_path, "r") as f:
                 if not f.read():

@@ -30,7 +30,7 @@ class CommitUpdater():
             raise
     def new_version(self):
         self.set_version_terms()
-        last_version = self._file_manager.read_last_version(self._project).split(".")
+        last_version = self._file_manager.read_last_version().split(".")
         new_version = self._version_manager.calculate_new_version(last_version)
         new_version_str = ".".join(new_version)
         self._file_manager.write_new_version(new_version_str)
@@ -85,7 +85,7 @@ class CommitUpdater():
         return log_return
 
     def get_last_tag(self):
-        return self._file_manager.read_last_version(self._project)
+        return self._file_manager.read_last_version()
     
     def get_last_log(self):
         last_tag = self.get_last_tag()
