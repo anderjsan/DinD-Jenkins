@@ -17,7 +17,7 @@ class CommitUpdater():
         self._last_tag = [0,0,0]
         self._commit_message = ""
     
-    def set_version_terms(self):
+    def _set_version_terms(self):
         try:
             git = GitUtils()
             git.clone_repository(self._project)
@@ -29,7 +29,7 @@ class CommitUpdater():
             print(f"Erro ao clonar repositório: {e}")
             raise
     def new_version(self):
-        self.set_version_terms()
+        self._set_version_terms()
         last_version = self._file_manager.read_last_version().split(".")
         new_version = self._version_manager.calculate_new_version(last_version)
         new_version_str = ".".join(new_version)
