@@ -48,9 +48,14 @@ pipeline {
   }
   post {
     always {
-      // Desativação do ambiente virtual Python
+      // Verifica se o ambiente virtual Python está ativado antes de tentar desativá-lo
       script {
-        sh "source $VENV/bin/activate && deactivate"
+        def result = sh(returnStatus: true, script: 'python -c "import sys; print(sys.prefix)"')
+        if (result == 0) {
+          sh 'deactivate'
+        } else {
+          echo 'Ambiente virtual Python não está ativado. Não é necessário desativar.'
+        }
       }
     }
   }
