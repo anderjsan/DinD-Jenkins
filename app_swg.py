@@ -10,8 +10,4 @@ def initialize_app():
     updater.run()
 
 if __name__ == "__main__":
-    app = Flask(__name__)
-    updater = Updater(app)
-    swg = AppSwagger(app)
-    
-    updater.run()
+    initialize_app()

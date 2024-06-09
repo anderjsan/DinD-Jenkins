@@ -1,8 +1,6 @@
 FROM jenkins/jenkins
 USER root
 RUN export VERSION_PATH="/var/jenkins_home/.version"
-COPY ./version_tag.sh /var/jenkins_home/version_tag.sh
-RUN chmod +x /var/jenkins_home/version_tag.sh
 RUN apt-get update -qq \
  && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
