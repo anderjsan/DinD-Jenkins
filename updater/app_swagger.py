@@ -25,9 +25,12 @@ class AppSwagger:
                 }
             }
         )
-        self.app.register_blueprint(self.bp, url_prefix=self.SWAGGER_URL)
-        self.app.config['SWAGGER_JSON'] = self.API_URL
+        
 
     def get_swagger_json(self):
         with open(os.path.join(os.path.dirname(__file__), self.SWGR_STATIC, self.SWGR_JSON)) as f:
             return json.load(f)
+
+    def run(self):
+        self.app.register_blueprint(self.bp, url_prefix=self.SWAGGER_URL)
+        self.app.config['SWAGGER_JSON'] = self.API_URL
