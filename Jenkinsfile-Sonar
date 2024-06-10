@@ -40,7 +40,7 @@ pipeline {
                 -Dsonar.sources=. \
                 -Dsonar.exclusions=${env.VENV}/** \
                 -Dsonar.host.url=http://sonarqube-svr:9000 \
-                -Dsonar.token=sqp_b7075335c074d7a96e360dadbe032e9c2986114a \
+                -Dsonar.token=sqp_b7075335c074d7a96e360dadbe032e9c2986114a 
             """
           }
         }
